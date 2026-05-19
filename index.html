@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaos Palestina Peduli</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f5f5; color: #333; line-height: 1.6; }
+        img { max-width: 100%; }
+
+        /* Promo Banner */
+        .promo-banner {
+            background: linear-gradient(90deg, #c0392b, #e74c3c);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.85; } }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .hero .badge {
+            display: inline-block;
+            background: #c0392b;
+            color: white;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        .hero h1 { font-size: 2rem; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 2px; }
+        .hero .subtitle { font-size: 1rem; opacity: 0.9; margin-bottom: 20px; }
+        .hero-img { max-width: 320px; border-radius: 12px; margin: 15px auto; display: block; background: #ddd; min-height: 300px; }
+        .hero .cta-text { font-size: 0.95rem; background: rgba(255,255,255,0.1); padding: 12px; border-radius: 8px; margin-top: 15px; }
+
+        /* Product Section */
+        .product-section {
+            background: white;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 25px 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+        }
+        .product-section h2 { text-align: center; font-size: 1.4rem; margin-bottom: 15px; color: #1a1a2e; }
+
+        /* Price */
+        .price-box { text-align: center; padding: 20px; background: #fff5f5; border-radius: 12px; margin-bottom: 20px; }
+        .price-box .normal { text-decoration: line-through; color: #999; font-size: 1.1rem; }
+        .price-box .sale { font-size: 2.5rem; font-weight: bold; color: #c0392b; }
+        .price-box .save { display: inline-block; background: #27ae60; color: white; padding: 3px 12px; border-radius: 10px; font-size: 0.85rem; margin-top: 5px; }
+        .price-box .bonus { margin-top: 10px; font-size: 0.95rem; color: #555; }
+        .price-box .bonus span { font-weight: bold; color: #27ae60; }
+
+        /* Countdown */
+        .countdown-box {
+            text-align: center;
+            padding: 15px;
+            background: #1a1a2e;
+            color: white;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .countdown-box p { font-size: 0.9rem; margin-bottom: 10px; opacity: 0.8; }
+        .countdown { display: flex; justify-content: center; gap: 10px; }
+        .countdown .item {
+            background: #c0392b;
+            padding: 10px 15px;
+            border-radius: 8px;
+            min-width: 60px;
+        }
+        .countdown .item .num { font-size: 1.8rem; font-weight: bold; }
+        .countdown .item .label { font-size: 0.7rem; text-transform: uppercase; opacity: 0.8; }
+
+        /* Specs */
+        .specs { list-style: none; padding: 0; margin-bottom: 20px; }
+        .specs li { padding: 8px 0; border-bottom: 1px solid #eee; font-size: 0.95rem; }
+        .specs li::before { content: "✅ "; }
+
+        /* Order Form */
+        .order-form { background: #f9f9f9; padding: 20px; border-radius: 12px; margin-bottom: 20px; }
+        .order-form h3 { text-align: center; margin-bottom: 15px; color: #1a1a2e; }
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 0.9rem; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        .form-group textarea { height: 80px; resize: vertical; }
+        .color-options { display: flex; gap: 10px; flex-wrap: wrap; }
+        .color-opt {
+            padding: 8px 16px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: border-color 0.2s;
+        }
+        .color-opt:hover, .color-opt.active { border-color: #c0392b; }
+        .size-options { display: flex; gap: 8px; flex-wrap: wrap; }
+        .size-opt {
+            padding: 8px 14px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: border-color 0.2s;
+        }
+        .size-opt:hover, .size-opt.active { border-color: #c0392b; }
+
+        .btn-order {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            text-align: center;
+            text-decoration: none;
+        }
+        .btn-order:hover { background: linear-gradient(135deg, #219a52, #27ae60); }
+
+        /* Why Section */
+        .why-section {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 25px 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+        }
+        .why-section h2 { text-align: center; margin-bottom: 20px; color: #1a1a2e; }
+        .why-item { display: flex; gap: 15px; margin-bottom: 20px; }
+        .why-icon { font-size: 2.5rem; min-width: 50px; text-align: center; }
+        .why-text h3 { font-size: 1.1rem; margin-bottom: 5px; color: #1a1a2e; }
+        .why-text p { color: #666; font-size: 0.9rem; }
+
+        /* Testimonials */
+        .testi-section {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 25px 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+        }
+        .testi-section h2 { text-align: center; margin-bottom: 20px; color: #1a1a2e; }
+        .testi { padding: 15px; background: #f9f9f9; border-radius: 10px; margin-bottom: 15px; }
+        .testi .stars { color: #f1c40f; font-size: 1.1rem; }
+        .testi .quote { margin: 8px 0; font-style: italic; color: #555; font-size: 0.95rem; }
+        .testi .author { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+        .testi .avatar { width: 40px; height: 40px; border-radius: 50%; background: #ddd; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #888; }
+        .testi .name { font-weight: bold; font-size: 0.9rem; }
+        .testi .location { font-size: 0.8rem; color: #999; }
+
+        /* Guarantee */
+        .guarantee-section {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 25px 20px;
+            background: linear-gradient(135deg, #fff5f5, #ffe8e8);
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            border: 2px solid #c0392b;
+        }
+        .guarantee-section .icon { font-size: 3rem; margin-bottom: 10px; }
+        .guarantee-section h2 { color: #c0392b; margin-bottom: 10px; }
+        .guarantee-section p { color: #555; font-size: 0.95rem; margin-bottom: 15px; }
+
+        /* Trust Badges */
+        .trust-section {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 25px 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+        }
+        .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 15px; text-align: center; }
+        .trust-item { padding: 15px 10px; }
+        .trust-item .icon { font-size: 1.8rem; margin-bottom: 8px; }
+        .trust-item .title { font-weight: bold; font-size: 0.85rem; color: #1a1a2e; }
+
+        /* Floating CTA */
+        .floating-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 12px 20px;
+            box-shadow: 0 -2px 15px rgba(0,0,0,0.15);
+            z-index: 999;
+        }
+        .floating-cta a {
+            display: block;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            text-align: center;
+            padding: 14px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-decoration: none;
+        }
+
+        footer { text-align: center; padding: 30px 20px 100px; color: #999; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+    <div class="promo-banner">🔥 PROMO TERBATAS! GRATIS ONGKIR HARI INI! 🔥</div>
+
+    <div class="hero">
+        <div class="badge">🇵🇸 LIMITED EDITION</div>
+        <h1>Kaos Palestina</h1>
+        <p class="subtitle">We Stand Together</p>
+        <!-- Placeholder image - ganti dengan gambar produk asli -->
+        <div class="hero-img" style="display:flex;align-items:center;justify-content:center;font-size:4rem;">👕🇵🇸</div>
+        <div class="cta-text">Tunjukkan Solidaritas Nyata untuk Saudara Kita di Palestina.<br>Lebih dari sekedar kaos — ini adalah pernyataan dukungan, simbol persatuan, dan bentuk dakwah yang bisa kamu pakai setiap hari.</div>
+    </div>
+
+    <div class="product-section">
+        <h2>Kaos "We Stand With Palestine"</h2>
+
+        <div class="price-box">
+            <div class="normal">Rp 159.000</div>
+            <div class="sale">Rp 99.000</div>
+            <div class="save">HEMAT Rp 60.000!</div>
+            <div class="bonus">🎁 <span>Gratis Ongkir!</span><br>📦 Bisa <span>COD</span> (Bayar di Tempat)</div>
+        </div>
+
+        <div class="countdown-box">
+            <p>⏰ PROMO BERAKHIR DALAM:</p>
+            <div class="countdown">
+                <div class="item"><div class="num" id="hours">12</div><div class="label">Jam</div></div>
+                <div class="item"><div class="num" id="minutes">34</div><div class="label">Menit</div></div>
+                <div class="item"><div class="num" id="seconds">56</div><div class="label">Detik</div></div>
+            </div>
+        </div>
+
+        <ul class="specs">
+            <li>Bahan Cotton Combed 24s Premium — Adem & Nyaman</li>
+            <li>Sablon DTF Berkualitas Tinggi (Anti Luntur)</li>
+            <li>Jahitan Rapi & Kuat Tahan Lama</li>
+            <li>Bendera Indonesia & Palestina di Lengan</li>
+            <li>Design Eksklusif & Bermakna</li>
+            <li>Tersedia 7 Ukuran (S - 4XL)</li>
+        </ul>
+
+        <div class="order-form" id="order">
+            <h3>📝 Form Pemesanan</h3>
+
+            <div class="form-group">
+                <label>Pilih Warna:</label>
+                <div class="color-options">
+                    <div class="color-opt active" onclick="selectColor(this)">Hitam</div>
+                    <div class="color-opt" onclick="selectColor(this)">Putih</div>
+                    <div class="color-opt" onclick="selectColor(this)">Navy</div>
+                    <div class="color-opt" onclick="selectColor(this)">Maroon</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Pilih Ukuran:</label>
+                <div class="size-options">
+                    <div class="size-opt" onclick="selectSize(this)">S</div>
+                    <div class="size-opt" onclick="selectSize(this)">M</div>
+                    <div class="size-opt active" onclick="selectSize(this)">L</div>
+                    <div class="size-opt" onclick="selectSize(this)">XL</div>
+                    <div class="size-opt" onclick="selectSize(this)">2XL</div>
+                    <div class="size-opt" onclick="selectSize(this)">3XL</div>
+                    <div class="size-opt" onclick="selectSize(this)">4XL</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Jumlah:</label>
+                <select id="qty">
+                    <option value="1">1 pcs</option>
+                    <option value="2">2 pcs</option>
+                    <option value="3">3 pcs</option>
+                    <option value="5">5 pcs</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Nama Lengkap *</label>
+                <input type="text" id="nama" placeholder="Masukkan nama lengkap" required>
+            </div>
+
+            <div class="form-group">
+                <label>No. WhatsApp *</label>
+                <input type="tel" id="wa" placeholder="08xxxxxxxxxx" required>
+            </div>
+
+            <div class="form-group">
+                <label>Alamat Lengkap *</label>
+                <textarea id="alamat" placeholder="Jalan, RT/RW, Kelurahan, Kecamatan, Kota, Kode Pos" required></textarea>
+            </div>
+
+            <a href="#" class="btn-order" onclick="sendWA(); return false;">🛒 PESAN SEKARANG — Rp 99.000</a>
+        </div>
+    </div>
+
+    <div class="why-section">
+        <h2>Kenapa Harus Punya Kaos Ini?</h2>
+        <div class="why-item">
+            <div class="why-icon">🤲</div>
+            <div class="why-text">
+                <h3>Bentuk Dukungan Nyata</h3>
+                <p>Setiap kaos yang kamu pakai adalah bentuk solidaritas nyata untuk saudara kita di Palestina.</p>
+            </div>
+        </div>
+        <div class="why-item">
+            <div class="why-icon">😎</div>
+            <div class="why-text">
+                <h3>Tampil Keren & Bermakna</h3>
+                <p>Desain eksklusif yang tidak hanya terlihat keren, tapi juga punya makna mendalam.</p>
+            </div>
+        </div>
+        <div class="why-item">
+            <div class="why-icon">⭐</div>
+            <div class="why-text">
+                <h3>Kualitas Premium</h3>
+                <li>Bahan cotton combed 24s yang adem, sablon DTF anti luntur, jahitan rapi dan kuat.</li>
+            </div>
+        </div>
+    </div>
+
+    <div class="testi-section">
+        <h2>Apa Kata Mereka?</h2>
+        <p style="text-align:center;color:#888;margin-bottom:20px;font-size:0.9rem;">Testimoni dari Ribuan Pembeli yang Puas</p>
+
+        <div class="testi">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <div class="quote">"Bahannya adem banget dan sablonan rapi! Bangga bisa pake kaos ini buat tunjukin dukungan ke Palestina. Recommended banget!"</div>
+            <div class="author">
+                <div class="avatar">R</div>
+                <div><div class="name">Rizki Firmansyah</div><div class="location">Jakarta Selatan</div></div>
+            </div>
+        </div>
+
+        <div class="testi">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <div class="quote">"Pesen 3 sekaligus buat keluarga. Kualitasnya premium tapi harganya affordable. Pengiriman juga cepet banget. Puas!"</div>
+            <div class="author">
+                <div class="avatar">A</div>
+                <div><div class="name">Aisyah Nurhaliza</div><div class="location">Bandung</div></div>
+            </div>
+        </div>
+
+        <div class="testi">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <div class="quote">"Desainnya keren, jahitannya rapi, dan yang paling penting: ini bukan cuma kaos biasa, tapi bentuk dukungan kita!"</div>
+            <div class="author">
+                <div class="avatar">F</div>
+                <div><div class="name">Fahmi Hakim</div><div class="location">Surabaya</div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="guarantee-section">
+        <div class="icon">💯</div>
+        <h2>GARANSI UANG KEMBALI 2X LIPAT!</h2>
+        <p>Apabila barang yang diterima tidak sesuai deskripsi, kami kembalikan uang Anda 2x lipat tanpa syarat! Kami yakin dengan kualitas produk kami, karena itu kami berani memberikan garansi ini.</p>
+    </div>
+
+    <div class="trust-section">
+        <div class="trust-grid">
+            <div class="trust-item">
+                <div class="icon">✓</div>
+                <div class="title">100% Original</div>
+            </div>
+            <div class="trust-item">
+                <div class="icon">📦</div>
+                <div class="title">Bayar di Tempat</div>
+            </div>
+            <div class="trust-item">
+                <div class="icon">🚚</div>
+                <div class="title">Gratis Ongkir</div>
+            </div>
+            <div class="trust-item">
+                <div class="icon">⚡</div>
+                <div class="title">Proses Cepat</div>
+            </div>
+            <div class="trust-item">
+                <div class="icon">💯</div>
+                <div class="title">Garansi 2x Lipat</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Kaos Palestina Peduli — Solidaritas Tanpa Batas 🇵🇸</p>
+    </footer>
+
+    <!-- Floating CTA -->
+    <div class="floating-cta">
+        <a href="#order">🛒 PESAN SEKARANG — Rp 99.000</a>
+    </div>
+
+    <script>
+        // Countdown Timer
+        function startCountdown() {
+            let stored = localStorage.getItem('palestina_countdown');
+            let endTime;
+            if (stored && parseInt(stored) > Date.now()) {
+                endTime = parseInt(stored);
+            } else {
+                endTime = Date.now() + 12*3600000 + 34*60000 + 56*1000;
+                localStorage.setItem('palestina_countdown', endTime);
+            }
+
+            function update() {
+                let diff = endTime - Date.now();
+                if (diff <= 0) diff = 0;
+                const h = Math.floor(diff / 3600000);
+                const m = Math.floor((diff % 3600000) / 60000);
+                const s = Math.floor((diff % 60000) / 1000);
+                document.getElementById('hours').textContent = String(h).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(m).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(s).padStart(2, '0');
+            }
+            update();
+            setInterval(update, 1000);
+        }
+        startCountdown();
+
+        // Color & Size Selection
+        function selectColor(el) {
+            document.querySelectorAll('.color-opt').forEach(e => e.classList.remove('active'));
+            el.classList.add('active');
+        }
+        function selectSize(el) {
+            document.querySelectorAll('.size-opt').forEach(e => e.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        // WhatsApp Order
+        function sendWA() {
+            const nama = document.getElementById('nama').value.trim();
+            const wa = document.getElementById('wa').value.trim();
+            const alamat = document.getElementById('alamat').value.trim();
+            const qty = document.getElementById('qty').value;
+            const warna = document.querySelector('.color-opt.active')?.textContent || 'Hitam';
+            const ukuran = document.querySelector('.size-opt.active')?.textContent || 'L';
+
+            if (!nama || !wa || !alamat) {
+                alert('Mohon lengkapi semua data pemesanan!');
+                return;
+            }
+
+            const total = qty * 99000;
+            const msg = `Halo, saya mau pesan Kaos Palestina Peduli:%0A%0A` +
+                `👤 Nama: ${nama}%0A` +
+                `📱 WA: ${wa}%0A` +
+                `📍 Alamat: ${alamat}%0A` +
+                `🎨 Warna: ${warna}%0A` +
+                `📏 Ukuran: ${ukuran}%0A` +
+                `📦 Jumlah: ${qty} pcs%0A` +
+                `💰 Total: Rp ${total.toLocaleString('id-ID')}%0A%0A` +
+                `Mohon diproses. Terima kasih! 🇵🇸`;
+
+            // GANTI NOMOR WA DI BAWAH INI
+            window.open(`https://wa.me/6281234567890?text=${msg}`, '_blank');
+        }
+    </script>
+
+</body>
+</html>
