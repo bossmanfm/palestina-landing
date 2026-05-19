@@ -536,7 +536,9 @@
             const a = document.getElementById('alamat').value.trim();
             if (!n) { alert('❌ Mohon isi nama lengkap Anda'); document.getElementById('nama').focus(); return false; }
             if (!t) { alert('❌ Mohon isi nomor telepon Anda'); document.getElementById('telepon').focus(); return false; }
-            if (t.length < 10) { alert('❌ Nomor telepon tidak valid'); document.getElementById('telepon').focus(); return false; }
+            // Bersihkan nomor telepon dari spasi, strip, dll
+            const cleanPhone = t.replace(/[\s\-\(\)]/g, '');
+            if (cleanPhone.length < 9) { alert('❌ Nomor telepon tidak valid. Minimal 9 digit.'); document.getElementById('telepon').focus(); return false; }
             if (!a) { alert('❌ Mohon isi alamat lengkap Anda'); document.getElementById('alamat').focus(); return false; }
             return true;
         }
