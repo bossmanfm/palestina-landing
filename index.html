@@ -308,9 +308,9 @@
 
                     <div class="price-section">
                         <div class="price-label">Harga Normal:</div>
-                        <div class="price-original">Rp 159.000</div>
-                        <div class="price-now">Hanya 99rb</div>
-                        <div class="price-save">HEMAT Rp 60.000!</div>
+                        <div class="price-original">Rp 199.000</div>
+                        <div class="price-now">Hanya 119rb</div>
+                        <div class="price-save">HEMAT Rp 80.000!</div>
                         <div class="bonus-tag">🎁 BONUS: Gratis Ongkir!</div>
                         <div class="cod-tag">📦 Bisa COD (Bayar di Tempat)</div>
                     </div>
@@ -493,7 +493,7 @@
         let selectedColor = 'Hitam';
         let quantity = 1;
 
-        const pricing = { 'S': 99000, 'M': 99000, 'L': 99000, 'XL': 99000, 'XXL': 99000, '3XL': 119000, '4XL': 129000 };
+        const pricing = { 'S': 119000, 'M': 119000, 'L': 119000, 'XL': 119000, 'XXL': 119000, '3XL': 139000, '4XL': 149000 };
         function getCurrentPrice() { return pricing[selectedSize]; }
 
         function changeImage(thumbnail) {
@@ -522,7 +522,7 @@
             if (selectedSize === '3XL' || selectedSize === '4XL') {
                 el.textContent = 'RP ' + (p / 1000) + 'K';
             } else {
-                el.textContent = 'Hanya 99rb';
+                el.textContent = 'Hanya 119rb';
             }
         }
 
